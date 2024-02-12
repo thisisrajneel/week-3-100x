@@ -48,6 +48,13 @@ app.get('/numberOfRequests', (req, res) => {
     })
 })
 
+//global catches
+app.use((err, req, res, next) => {
+    res.json({
+        msg: "sorry something is up with the server"
+    })
+})
+
 app.listen(3000, () => {
     console.log('running');
 })
