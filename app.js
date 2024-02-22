@@ -1,5 +1,5 @@
 const app = require("express")()
-
+const { z } = require("zod")
 
 // middleware
 let numberOfRequests = 0
@@ -9,10 +9,13 @@ const calculateRequests = (req, res, next) => {
 }
 
 const userMiddleware = (req, res, next) => {
-    const username = req.headers.username
-    const password = req.headers.password
+    let usernameSchema = z.string()
+    username = req.headers.username
+    let passwordSchema = z.string().min(4)
+    password = req.headers.password
+
     
-    if(username != 'rajneel' || password != 'pass') {
+    if(!(usernameSchema.safeParse(username) && username == 'rajneel') || !(passwordSchema.safeParse(password) && password == 'pass')) {
         res.status(403).json({
             msg: "user doesn't exist"
         })
