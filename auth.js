@@ -21,6 +21,11 @@ const ALL_USERS = [
     password: "123321",
     name: "Priya kumari",
   },
+  {
+    username: "rajneel@gmail.com",
+    password: "123456",
+    name: "Rajneel Anuraj"
+  }
 ];
 
 function userExists(username, password) {
